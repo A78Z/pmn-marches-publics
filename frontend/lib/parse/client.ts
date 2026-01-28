@@ -1,3 +1,4 @@
+// @ts-ignore - Parse SDK types
 import Parse from 'parse';
 
 // Configuration Parse - côté client
