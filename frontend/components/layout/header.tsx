@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -80,12 +81,14 @@ export function Header() {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-pmn-green-600 to-pmn-green-700 flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-lg">P</span>
-                <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-pmn-gold-500 border-2 border-white flex items-center justify-center">
-                  <span className="text-[8px] font-bold text-white">MN</span>
-                </div>
-              </div>
+              <Image
+                src="/images/logo-navbare.webp"
+                alt="Logo Projet Mobilier National"
+                width={44}
+                height={44}
+                className="w-11 h-11 object-contain"
+                priority
+              />
               <div className="hidden sm:block">
                 <span className="font-bold text-lg text-foreground">PMN</span>
                 <span className="text-xs block text-muted-foreground -mt-0.5">
