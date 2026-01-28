@@ -10,17 +10,21 @@ export const metadata: Metadata = {
   description: 'Consultez tous les appels d\'offres publics du Sénégal. Filtrez par module, région, date limite et trouvez les opportunités qui correspondent à votre activité.',
 };
 
-interface PageProps {
-  searchParams: {
-    q?: string;
-    module?: string;
-    region?: string;
-    statut?: string;
-    page?: string;
-  };
+interface SearchParams {
+  q?: string;
+  module?: string;
+  region?: string;
+  statut?: string;
+  page?: string;
 }
 
-export default function AppelsOffresPage({ searchParams }: PageProps) {
+interface PageProps {
+  searchParams: Promise<SearchParams>;
+}
+
+export default async function AppelsOffresPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  
   return (
     <div className="min-h-screen bg-muted/20">
       {/* Header */}
@@ -37,7 +41,7 @@ export default function AppelsOffresPage({ searchParams }: PageProps) {
           {/* Tenders list */}
           <main className="flex-1">
             <Suspense fallback={<TendersLoading />}>
-              <TendersList searchParams={searchParams} />
+              <TendersList searchParams={params} />
             </Suspense>
           </main>
         </div>

@@ -28,12 +28,13 @@ import {
 import { getTenderById } from '@/lib/mock-data';
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
   // Récupérer l'appel d'offres par son ID
-  const tender = getTenderById(params.id);
+  const tender = getTenderById(id);
 
   if (!tender) {
     return {
@@ -52,9 +53,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function TenderDetailPage({ params }: PageProps) {
+export default async function TenderDetailPage({ params }: PageProps) {
+  const { id } = await params;
   // Récupérer l'appel d'offres par son ID depuis les données
-  const tender = getTenderById(params.id);
+  const tender = getTenderById(id);
 
   if (!tender) {
     notFound();

@@ -157,7 +157,7 @@ export const AppelOffreService = {
         query.count(),
       ]);
 
-      const data = results.map((obj) => ({
+      const data = results.map((obj: any) => ({
         objectId: obj.id,
         reference: obj.get('reference'),
         titre: obj.get('titre'),
@@ -415,7 +415,7 @@ export const FavoriService = {
 
     const results = await query.find();
 
-    return results.map((obj) => {
+    return results.map((obj: any) => {
       const appelOffre = obj.get('appelOffre');
       return {
         objectId: obj.id,
